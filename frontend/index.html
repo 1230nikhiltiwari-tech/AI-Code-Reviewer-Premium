@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Engineering Agent</title>
+    <link rel="stylesheet" href="/frontend/style.css">
+</head>
+<body>
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
+
+<div class="app-shell">
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-mark">&lt;/&gt;</div>
+            <div>
+                <div class="brand-name">AI Code Engineering Agent</div>
+                <div class="brand-sub">Repository intelligence platform</div>
+            </div>
+        </div>
+        <div class="status-pill"><span class="status-dot"></span> System Online</div>
+    </header>
+
+    <section class="hero">
+        <div class="eyebrow">AI-POWERED CODE REVIEW</div>
+        <h1>Ship cleaner code.<br><span>Catch issues earlier.</span></h1>
+        <p>Upload a repository or review a public GitHub repository for security, reliability and maintainability findings with evidence-based AI engineering guidance.</p>
+    </section>
+
+    <section class="upload-card" id="dropZone">
+        <div class="upload-icon">↑</div>
+        <div class="upload-copy">
+            <h2>Analyze a repository</h2>
+            <p>Upload a <strong>ZIP repository</strong> and inspect supported Python and Java source files.</p>
+            <label class="file-button">Choose repository<input type="file" id="repoFile" accept=".zip" hidden></label>
+            <span id="selectedFile" class="selected-file">No repository selected</span>
+        </div>
+        <button id="analyzeBtn" class="analyze-button" type="button">
+            <span class="spinner"></span>
+            <span class="button-text">Analyze Repository</span>
+            <span class="arrow">→</span>
+        </button>
+        <div id="progressWrap" class="progress-wrap">
+            <span id="progressText">Preparing...</span>
+            <div id="progressBar" class="progress-bar"><span></span></div>
+        </div>
+        <div id="status" class="status-message"></div>
+    </section>
+
+    <section class="results hidden" id="results">
+        <div class="results-heading">
+            <div>
+                <div class="eyebrow">ANALYSIS REPORT</div>
+                <h2 id="repoTitle">Repository</h2>
+                <p id="repoMeta"></p>
+            </div>
+            <button id="newAnalysisBtn" class="secondary-button" type="button">+ New Analysis</button>
+        </div>
+
+        <div class="overview-grid">
+            <div class="health-card">
+                <div class="card-label">Code Health</div>
+                <div class="health-main">
+                    <div id="scoreRing" class="score-ring"><span id="healthScore">100</span></div>
+                    <div><strong id="healthLabel">Excellent</strong><p id="healthHint">No issues detected.</p></div>
+                </div>
+            </div>
+            <div class="stat-card"><span>Total Issues</span><div class="stat-icon">!</div><strong id="totalIssues">0</strong></div>
+            <div class="stat-card high-card"><span>High Severity</span><div class="stat-icon">▲</div><strong id="highIssues">0</strong></div>
+            <div class="stat-card medium-card"><span>Medium Severity</span><div class="stat-icon">●</div><strong id="mediumIssues">0</strong></div>
+            <div class="stat-card low-card"><span>Low Severity</span><div class="stat-icon">↓</div><strong id="lowIssues">0</strong></div>
+        </div>
+
+        <div class="findings-panel">
+            <div class="panel-toolbar">
+                <div><h3>Detected Findings</h3><span id="findingCount">0 issues</span></div>
+                <div class="toolbar-actions">
+                    <div class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search findings..." autocomplete="off"></div>
+                    <select id="severityFilter">
+                        <option value="ALL">All severity</option>
+                        <option value="HIGH">High</option>
+                        <option value="MEDIUM">Medium</option>
+                        <option value="LOW">Low</option>
+                    </select>
+                </div>
+            </div>
+            <div id="findings" class="findings-list"></div>
+            <div id="emptyState" class="empty-state hidden"><div>✓</div><h3>No findings match your filter</h3><p>Try changing the search or severity filter.</p></div>
+        </div>
+    </section>
+
+    <footer>AI Code Engineering Agent <span>•</span> Repository-level analysis</footer>
+</div>
+<script src="/frontend/app.js"></script>
+</body>
+</html>
